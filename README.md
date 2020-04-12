@@ -1,2 +1,3 @@
 # Techdegree-project1
- My first techdegree project
+ This is my Techdegree Project 1.
+ It is created by Glen Rose.
