@@ -50,15 +50,16 @@ $quotes[] =[
 // We find a random number with rand-bulit in function and define lowest number 0 and highest number 6 (since there is 6 quotes).
 
 function getRandomQuote(){
-    $randomNumber = rand(0, 7);
+    $randomNumber = rand(0, 6);
     
-    return $randomNumber;
-
-    //selecting a quote
-    //global $quotes;
-    //$selectedQuote = $quotes[$randomNumber]
-    //return $selectedQuote;
+   
+    //selecting a quote from the array above
+    global $quotes;
+    $selectedQuote = $quotes[$randomNumber];
+    return $selectedQuote;
 };
+
+
 
 // Create the printQuote funtion and name it printQuote
 // With this function we just echo strings
