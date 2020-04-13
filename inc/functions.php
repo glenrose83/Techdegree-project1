@@ -1,8 +1,5 @@
 <?php
-// PHP - Random Quote Generator
-
-// Create the Multidimensional array of quote elements and name it quotes
-// Each inner array element should be an associative array
+//We type all the quotes. 
 $quotes[] =[
     'source' => 'Brokeback Mountain',
     'quote' => 'I wish I knew how to quit you', 
@@ -45,27 +42,40 @@ $quotes[] =[
     'year' => '1983',
 ]; 
 
-
-// Create the getRandomQuuote function and name it getRandomQuote
-// We find a random number with rand-bulit in function and define lowest number 0 and highest number 6 (since there is 6 quotes).
-
-function getRandomQuote(){
-    $randomNumber = rand(0, 6);
-    
-   
+// We find a random number with rand-bulit in function 
+function getRandomQuote($array){
+     
     //selecting a quote from the array above
-    global $quotes;
-    $selectedQuote = $quotes[$randomNumber];
+    $randomNumber = rand(0,6);
+    $selectedQuote= $array[$randomNumber];
     return $selectedQuote;
 };
 
-
-
-// Create the printQuote funtion and name it printQuote
 // With this function we just echo strings
-function printQuote($quoteToPrint) {
-    echo $quoteToPrint;
-};
+function printQuote($array) {
 
+    //Calling the getRandomQuote function to get a random quote
+    $selectedQuote = getRandomQuote($array);
+      
+    //Assigning the quote to a varible
+    $quote = "<p class='quote'>". $selectedQuote['quote'] . "</p>";
+    
+    //Conditionals if the citation or year is not avaible
+    if (isset($selectedQuote['source'])) {
+       $movie = "<span class='citation'>". $selectedQuote['source'] . "</span>" ;
+    } else {
+       $movie = "";
+    }
+
+    if (isset($selectedQuote['year'])) {
+       $year = "<span class='year'>". $selectedQuote['year'] . "</span>";
+    } else {
+       $year = "";
+    }      
+
+    //Putting together the html with strings that needs to be displayed
+    echo $quote. "<p class='source'>" . $movie . $year . "</p>";
+  
+};
 
 ?>
