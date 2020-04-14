@@ -22,12 +22,14 @@ $quotes[] =[
     'source' => 'Sudden Impact',
     'quote' => 'Go ahead, make my day.', 
     'year' => '1983',
+    'citation' => 'Dirty Harry',
 ]; 
 
 $quotes[] =[
     'source' => 'Dr. No',
     'quote' => 'Bond. James Bond.', 
     'year' => '1962',
+    'citation' => 'James Bond',
 ]; 
 
 $quotes[] =[
@@ -45,8 +47,12 @@ $quotes[] =[
 // We find a random number with rand-bulit in function 
 function getRandomQuote($array){
      
+    //Counting the quotes and subtracting 1, since Count() dosent count item 0 in the array
+    $items_in_array = count($array);
+    $realcount = $items_in_array - 1;
+
     //selecting a quote from the array above
-    $randomNumber = rand(0,6);
+    $randomNumber = rand(0,$realcount);
     $selectedQuote= $array[$randomNumber];
     return $selectedQuote;
 };
@@ -60,12 +66,18 @@ function printQuote($array) {
     //Assigning the quote to a varible
     $quote = "<p class='quote'>". $selectedQuote['quote'] . "</p>";
     
-    //Conditionals if the citation or year is not avaible
+    //Conditionals if the source, citation or year is not availble
     if (isset($selectedQuote['source'])) {
-       $movie = "<span class='citation'>". $selectedQuote['source'] . "</span>" ;
+       $movie = $selectedQuote['source'];
     } else {
        $movie = "";
     }
+
+    if (isset($selectedQuote['citation'])) {
+        $citation = "<span class='citation'>". $selectedQuote['citation'] . "</span>" ;
+     } else {
+        $citation = "";
+     } 
 
     if (isset($selectedQuote['year'])) {
        $year = "<span class='year'>". $selectedQuote['year'] . "</span>";
@@ -74,7 +86,7 @@ function printQuote($array) {
     }      
 
     //Putting together the html with strings that needs to be displayed
-    echo $quote. "<p class='source'>" . $movie . $year . "</p>";
+    echo $quote. "<p class='source'>". $movie . $citation. $year . "</p>";
   
 };
 
